@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 root 'accounts#index'
 
+resources :users do
+  resources :accounts
+end
+
 resources :accounts do
   resources :transactions
 end

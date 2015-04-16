@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
 	before_action :find_account, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@accounts = Account.all.order("id ASC")
+		@accounts = current_user.accounts.all.order("id ASC")
 	end
 
 	def show
@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
 	end
 
 	def create
-		@account = Account.new (account_params)
+		@account = current_user.accounts.new (account_params)
 		if @account.save
 			redirect_to @account
 		else
@@ -45,7 +45,7 @@ class AccountsController < ApplicationController
 			params.require(:account).permit(:name, :bank, :account_number, :balance)
 		end
 		def find_account
-			@account = Account.find( params[:id] )
+			@account = current_user.accounts.find( params[:id] )
 		end
 
 end
