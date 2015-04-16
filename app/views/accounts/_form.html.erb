@@ -1,0 +1,20 @@
+<% if @account.errors.any? %>
+<ul>
+	<% @account.errors.full_messages.each do |err| %>
+	<li><%= err %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @account do |f| %>
+
+<p><%= f.label :name %>	
+<%= f.text_field :name %></p>
+<p><%= f.label :account_number %>
+<%= f.text_field :account_number %></p>
+<p><%= f.label :bank %>
+<%= f.text_field :bank %></p>
+<p><%= f.label :balance %>
+<%= f.text_field :balance %></p>
+<p><%= f.submit %></p>
+<% end %>

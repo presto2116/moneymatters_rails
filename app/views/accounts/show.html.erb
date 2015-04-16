@@ -1,0 +1,59 @@
+<h2><%= @account.name %></h2>
+<table>
+<thead>
+	<tr>
+		<th>Acount Name</th>
+		<th>Account Number</th>
+		<th>Bank</th>
+		<th>Balance</th>
+		
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td><%= @account.name %></td>
+		<td><%= @account.account_number %></td>
+		<td><%= @account.bank %></td>
+		<td><%= @account.balance %></td>
+		<td><%= link_to "Edit", edit_account_path( @account ) %></td>
+		<td><%= link_to "Destroy", account_path( @account ), method: :delete %></td>
+	</tr>
+</tbody>
+</table>
+
+<h2>Transactions</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Credit</th>
+			<th>Debit</th>
+			<th>Payee</th>
+			<th>Date</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+	<tbody>
+
+<% @account.transactions.each do |transaction| %>
+		<tr>
+			<td><%= transaction.credit %></td>
+			<td><%= transaction.debit %></td>
+			<td><%= transaction.payee %></td>
+			<td><%= transaction.date %></td>
+			<td><%= transaction.category %></td>
+			<td><%= link_to "Edit", edit_account_transaction_path( @account, transaction ) %></td>
+		<td><%= link_to "Destroy", account_transaction_path( @account, transaction ), method: :delete %></td>
+			<% end %>
+		</tr>
+		
+	</tbody>
+</table>
+<br>
+<%= link_to "Add Transaction", new_account_transaction_path( @account ) %>
+<br>
+<p><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></p>
+
+
+
+
